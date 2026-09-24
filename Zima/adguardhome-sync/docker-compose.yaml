@@ -1,0 +1,24 @@
+services:
+  adguardhome-sync:
+    image: ghcr.io/bakito/adguardhome-sync:latest
+    container_name: adguardhome-sync 
+    ports:
+      - 8090:8080
+    environment:
+      - ORIGIN_URL=http://192.168.0.15:1080
+      - ORIGIN_USERNAME=yauheni
+      - ORIGIN_PASSWORD=Drob1470728
+      - REPLICA_URL=http://192.168.0.6:1080
+      - REPLICA_USERNAME=yauheni
+      - REPLICA_PASSWORD=Drob1470728
+      - CRON=*/10 * * * *
+      - RUN_ON_START=true
+      - SYNC_FILTERS=true
+      - SYNC_REWRITES=true
+      - SYNC_SERVICES=true
+      - SYNC_CLIENTS=true
+      - SYNC_GENERAL_SETTINGS=true
+      - SYNC_QUERY_LOG_CONFIG=true
+      - SYNC_STATS_CONFIG=true
+      - TZ=Europe/Minsk      
+    restart: unless-stopped

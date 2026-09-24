@@ -1,0 +1,16 @@
+services:
+  keepalived:
+    image: osixia/keepalived:latest
+    container_name: keepalived
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+#      - NET_BROADCAST
+    environment:
+      - KEEPALIVED_INTERFACE=ovs_eth0
+      - KEEPALIVED_VIRTUAL_IPS=192.168.0.100      
+      - TZ=Europe/Minsk 
+    volumes:
+      - /volume3/docker/keepalived/keepalived.conf:/etc/keepalived/keepalived.conf
+      - /volume3/docker/keepalived/check_adguard.sh:/usr/local/bin/check_adguard.sh:ro

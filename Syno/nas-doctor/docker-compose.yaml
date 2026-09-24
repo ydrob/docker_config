@@ -1,0 +1,18 @@
+services:
+  nas-doctor:
+    image: ghcr.io/mcdays94/nas-doctor:latest
+    container_name: nas-doctor
+    privileged: true
+    pid: host
+    network_mode: host
+    volumes:
+      - /volume1/docker/nas-doctor:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/log:/host/log:ro
+      - /dev:/dev:ro                       # Required for SMART device access
+      - /volume1:/host/volume1:ro
+      - /volume2:/host/volume2:ro          # add more volumes as needed
+    environment:
+      - TZ=Europe/Minsk
+      - NAS_DOCTOR_INTERVAL=30m
+    restart: unless-stopped

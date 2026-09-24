@@ -1,0 +1,13 @@
+name: adguardhome
+services:
+  adguardhome:
+    image: adguard/adguardhome:latest
+    container_name: adguardhome
+    volumes:
+      - /volume3/docker/adguard/config:/opt/adguardhome/conf # app configuration
+      - /volume3/docker/adguard/data:/opt/adguardhome/work # app working directory
+    restart: unless-stopped
+    network_mode: host   
+    environment:
+      TZ: Europe/Minsk     
+   

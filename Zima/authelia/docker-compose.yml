@@ -1,0 +1,16 @@
+version: '3'
+services:
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
+    restart: unless-stopped
+    volumes:
+      - /DATA/AppData/authelia/config:/config
+    environment:
+      TZ: Europe/Minsk 
+    ports:
+      - "9091:9091"
+    network_mode: bridge
+    dns:
+      - 8.8.8.8 # Google DNS
+      - 1.1.1.1 # Cloudfare DNS    

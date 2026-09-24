@@ -1,0 +1,17 @@
+features: 
+  dns: 
+    accessLists: true
+    serverConfig: true
+    rewrites: true
+  generalSettings: true
+  protectionStatus: true
+  queryLogConfig: true
+  statsConfig: true
+  clientSettings: true
+  services: true
+  filters: 
+    blacklist: true
+    whitelist: true
+    userRules: true
+  theme: true
+  tlsConfig: true

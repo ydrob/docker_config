@@ -1,0 +1,14 @@
+services:
+  jackett:
+    image: linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      TZ: Europe/Minsk
+      user: 1026:100
+    volumes:
+      - /DATA/AppData/jackett/config:/config
+    mem_limit: 400m  
+    ports:
+      - 9117:9117
+    restart: always
+    network_mode: bridge

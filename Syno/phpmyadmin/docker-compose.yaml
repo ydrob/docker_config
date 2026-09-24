@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  phpmyadmin:
+    image: yauhenidrob/phpmyadmin:0526
+    container_name: phpmyadmin   
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - DEBIAN_FRONTEND=noninteractive    
+    ports:
+      - "32:22"
+      - "90:80"
+    volumes:
+      - /volume3/docker/phpmyadmin/files:/opt/lampp/htdocs/:rw
+      - mysql_data:/opt/lampp/var/mysql
+    mem_limit: 1000m
+    labels:
+      maintainer: Yauheni Drob
+    restart: always
+    network_mode: bridge
+    
+volumes:
+  mysql_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /volume1/storage/Soft/Synology/docker/mysql_data
+      o: bind    
+
+# 0 * * * * /opt/lampp/htdocs/db_backup.sh

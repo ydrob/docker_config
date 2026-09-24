@@ -1,0 +1,14 @@
+version: '3'
+services:
+  myspeed:
+    image: i7gamer/myspeed
+    container_name: mySpeed
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /DATA/AppData/myspeed:/myspeed/data
+    environment:
+      - TZ=Europe/Minsk
+      - ALLOW_NO_PASSWORD=true
+volumes:
+  myspeed:      

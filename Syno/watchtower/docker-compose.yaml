@@ -1,0 +1,32 @@
+services:
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: WATCHTOWER
+    hostname: watchtower
+    mem_limit: 128m
+    mem_reservation: 50m
+    cpu_shares: 256
+    security_opt:
+      - no-new-privileges=true
+    read_only: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      TZ: Europe/Minsk
+      WATCHTOWER_CLEANUP: true # Remove old images after updating
+      WATCHTOWER_REMOVE_VOLUMES: false # Remove attached volumes after updating
+      DOCKER_API_VERSION: 1.43 # SSH docker version
+      WATCHTOWER_INCLUDE_RESTARTING: true # Restart containers after update
+      WATCHTOWER_INCLUDE_STOPPED: true # Update stopped containers   
+      WATCHTOWER_SCHEDULE: "0 0 */1 * * *" # Update & Scan containers every hour
+#      WATCHTOWER_SCHEDULE: "0 * * * * *"  # Update & Scan containers every minute
+      WATCHTOWER_LABEL_ENABLE: false
+      WATCHTOWER_ROLLING_RESTART: true
+      WATCHTOWER_TIMEOUT: 60s
+      WATCHTOWER_NOTIFICATIONS: shoutrrr
+      WATCHTOWER_NOTIFICATION_URL: telegram://8827279931:AAHtTZ1CRL8Gt1HGI1kxn5l22OtCwZ83Mzk@telegram?channels=598097572
+    restart: on-failure:5
+    network_mode: bridge
+    dns:
+      - 8.8.8.8 # Google DNS
+      - 1.1.1.1 # Cloudfare DNS

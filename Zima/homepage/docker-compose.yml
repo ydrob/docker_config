@@ -1,0 +1,14 @@
+version: '3'
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - /DATA/AppData/homepage/config:/app/config
+      - /DATA/AppData/homepage/images:/app/public/images
+      - /var/run/docker.sock:/var/run/docker.sock # pass local proxy
+    restart: unless-stopped
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=localhost,192.168.0.6:3000,home.drob.pro,drob.pro

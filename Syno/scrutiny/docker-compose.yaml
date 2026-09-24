@@ -1,0 +1,34 @@
+services:
+  scrutiny:
+    container_name: scrutiny
+    image: ghcr.io/starosdev/scrutiny:latest-omnibus
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN
+    ports:
+      - 6090:8080/tcp # webapp
+      - 8086:8086/tcp # influxDB admin
+    volumes:
+      - /run/udev:/run/udev:ro
+      - /volume3/docker/scrutiny:/opt/scrutiny/config
+      - /volume3/docker/scrutiny/influxdb:/opt/scrutiny/influxdb
+#      - /proc/mounts:/host/proc/mounts:ro
+#      - /volume1:/volume1:ro  # Монтируем корень хранилища
+#      - /var/lib/btrfs:/var/lib/btrfs:ro
+    devices:
+      - /dev/sata1:/dev/sata1
+      - /dev/sata2:/dev/sata2
+      - /dev/nvme0:/dev/nvme0
+      - /dev/nvme1:/dev/nvme1
+      - /dev/nvme2:/dev/nvme2
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    environment:
+      - SCRUTINY_WEB_INFLUXDB_TOKEN=owYi5JuZd6Bc9gOs6wQombbzZhXqeo2L77GAcugoPEES3awoCr0rfUGb8oqYkqco
+      - SCRUTINY_WEB_INFLUXDB_INIT_USERNAME=yauheni
+      - SCRUTINY_WEB_INFLUXDB_INIT_PASSWORD=Qq1234567890!
+      - COLLECTOR_CRON_SCHEDULE=0 19 * * *
+      - TZ=Europe/Minsk
+#      - COLLECTOR_BTRFS_CRON_SCHEDULE=*/15 * * * *
+#      - COLLECTOR_BTRFS_RUN_STARTUP=true
