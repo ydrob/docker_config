@@ -25,7 +25,7 @@ services:
       WATCHTOWER_TIMEOUT: 60s
       WATCHTOWER_NOTIFICATIONS: shoutrrr
       WATCHTOWER_NOTIFICATION_URL: telegram://8827279931:AAHtTZ1CRL8Gt1HGI1kxn5l22OtCwZ83Mzk@telegram?channels=598097572
-    restart: on-failure:5
+    restart: unless-stopped
     network_mode: bridge
     dns:
       - 8.8.8.8 # Google DNS

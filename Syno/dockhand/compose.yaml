@@ -9,3 +9,5 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /volume3/docker/dockhand:/app/data
       - /volume3/docker/stacks:/app/stacks
+    environment:
+      - SKIP_DF_COLLECTION=true
