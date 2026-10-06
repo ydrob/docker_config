@@ -23,5 +23,5 @@ services:
     restart: unless-stopped
     network_mode: host
     dns:
-      - 8.8.8.8 # Google DNS
-      - 1.1.1.1 # Cloudfare DNS
+      - 9.9.9.9 # Google DNS
+      - 8.8.8.8 # Cloudfare DNS

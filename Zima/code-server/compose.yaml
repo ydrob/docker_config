@@ -1,0 +1,17 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Minsk
+#      - PASSWORD=${password}
+      - DEFAULT_WORKSPACE=/workspace
+    volumes:
+      - /DATA/AppData/code-server:/config
+      - /DATA/AppData:/workspace/Zima
+      - /media/192.168.0.15/docker:/workspace/Syno
+    ports:
+      - 8143:8443
+    restart: unless-stopped

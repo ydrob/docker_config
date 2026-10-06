@@ -12,9 +12,6 @@ services:
       - /run/udev:/run/udev:ro
       - /volume3/docker/scrutiny:/opt/scrutiny/config
       - /volume3/docker/scrutiny/influxdb:/opt/scrutiny/influxdb
-#      - /proc/mounts:/host/proc/mounts:ro
-#      - /volume1:/volume1:ro  # Монтируем корень хранилища
-#      - /var/lib/btrfs:/var/lib/btrfs:ro
     devices:
       - /dev/sata1:/dev/sata1
       - /dev/sata2:/dev/sata2
@@ -30,5 +27,3 @@ services:
       - SCRUTINY_WEB_INFLUXDB_INIT_PASSWORD=Qq1234567890!
       - COLLECTOR_CRON_SCHEDULE=0 19 * * *
       - TZ=Europe/Minsk
-#      - COLLECTOR_BTRFS_CRON_SCHEDULE=*/15 * * * *
-#      - COLLECTOR_BTRFS_RUN_STARTUP=true

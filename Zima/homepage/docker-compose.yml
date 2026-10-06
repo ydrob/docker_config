@@ -12,3 +12,4 @@ services:
     restart: unless-stopped
     environment:
       - HOMEPAGE_ALLOWED_HOSTS=localhost,192.168.0.6:3000,home.drob.pro,drob.pro
+      - TZ=Europe/Minsk     
